@@ -1,0 +1,8 @@
+matplotlib
+pandas
+pathlib
+statistics
+openpyxl
+scipy
+seaborn
+numpy
