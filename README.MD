@@ -1,13 +1,13 @@
 # USV-Utils (VocalMat): Mouse USV Analysis Library
 
-A Python tool for processing and analyzing mouse ultrasonic vocalizations (USVs) detected using **VocalMat** software, an open-source framework for automated USV detection and classification. This library automatically processes USV data into meaningful statistics, such as **USV length** and **calls per minute**, and performs **statistical comparisons** between two experimental groups.
+A Python tool for processing and analyzing mouse ultrasonic vocalizations (USVs) detected using **VocalMat** software, an open-source framework for automated USV detection and classification. This library automatically processes USV data into meaningful statistics, such as **USV duration** and **calls per minute**, and performs **statistical comparisons** between two experimental groups.
 
 
 ---
 
 
 ## 🎯 **Key Features**
-- 📃 **USV Data Classification**: Removes calls labeled as noise, and calculates USV length and calls per minute (CPM).
+- 📃 **USV Data Classification**: Removes calls labeled as noise, and calculates USV duration and calls per minute (CPM).
 - 📊 **Statistical Analysis**: Performs automated statistical tests between two groups.
 - 📂 **File Management**: Automatically reads USV Excel files from specified folders.
 - ⚙️ **Automation Ready**: Minimal setup - just provide the path and run the main script.
@@ -123,14 +123,14 @@ The script will perform the following tasks:
 1. **Read** and **process** the USV files for both groups.
 2. **Remove** the calls labeled as noise by the VocalMat software.
 3. **Generate summary data:**
-    - **USV length** (mean and SEM).
+    - **USV duration** (mean and SEM).
     - **Calls per minute** (CPM).
 4. **Print the summaries** to the terminal for both groups.
 5. **Provide comparisons** (Group1 vs Group2) with statistical analysis.
 6. **Save results** as files in a folder called `Python_files`:
     - **Excel files:** Summary data for each group and combined results.
     - **Statistical Results:** A **text file** containing the statistical test results.
-    - **Bar graphs:** two **bar graph images** (one for **USV length** and one for **Calls per minute**).
+    - **Bar graphs:** two **bar graph images** (one for **USV duration** and one for **Calls per minute**).
 
 ### **Notes**
 - The script assumes a **3-minute recording duration** to calculate "calls per minute (CPM)".
@@ -199,7 +199,7 @@ The original VocalMat software is available at: [VocalMat GitHub Repository](htt
 
 ## 🐭 **How It Works**
 1. **Load USV Files:** Extract USV data from VocalMat Excel files and remove calls labeled as noise.
-2. **Process Data:** Calculate USV length and calls per minute (CPM).
+2. **Process Data:** Calculate USV duration and calls per minute (CPM).
 3. **Perform Statistical Analysis:**
     - **Compare two groups:** Automatically calculates mean, standard deviation, and performs significance tests.
 

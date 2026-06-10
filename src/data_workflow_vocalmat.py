@@ -56,7 +56,7 @@ class Summary():
 
     def __aggregate(self, frames:pd.DataFrame, op:str):
         """perform the following operations to the pd.DataFrame: mean, standard deviation,
-        number of rows, CPM (calls per minute), and the mean of "Duration" (USV length)
+        number of rows, CPM (calls per minute), and the mean of "Duration" (USV duration)
 
         Args:
             frames (pd.DataFrame): pd.DataFrame that contains the values for the operations
@@ -87,15 +87,15 @@ class Summary():
         return(results)
 
     def create(self) -> pd.DataFrame:
-        """Generate a summary of the data sets with 4 columns (average lenght USV, sem length USV, total calls, and CPM)
+        """Generate a summary of the data sets with 4 columns (average duration USV, sem duration USV, total calls, and CPM)
 
         Returns:
-            pd.DataFrame: DataFrame with the columns average lenght USV, sem length USV, total calls, and CPM
+            pd.DataFrame: DataFrame with the columns average duration USV, sem duration USV, total calls, and CPM
         """
         dir_names = self.__read_files(self.root, self.filenames)
         summary_df = pd.DataFrame({
-        "average.length.usv": self.__aggregate(dir_names, "mean"),
-        "sem.length.usv": self.__aggregate(dir_names, "sem"),
+        "average.duration.usv": self.__aggregate(dir_names, "mean"),
+        "sem.duration.usv": self.__aggregate(dir_names, "sem"),
         "calls.per.minute": self.__aggregate(dir_names, "CPM")
         })
 
@@ -105,7 +105,7 @@ class Summary():
     def print(dataframe:pd.DataFrame, name:str):
         print(f"\033[1;4m{name}\033[0m\n", dataframe)
         print()
-        print(f"\033[1;4m{name} group avg\033[0m = {dataframe['average.length.usv'].astype(float).mean():.6f}")
+        print(f"\033[1;4m{name} group avg\033[0m = {dataframe['average.duration.usv'].astype(float).mean():.6f}")
         print()
     
 class Join_summary():
@@ -122,9 +122,9 @@ class Join_summary():
             pd.DataFrame: pd.DataFrame of both groups together
         """
         df = pd.DataFrame({
-        "Genotype": [name1]*len(group1["average.length.usv"]) + [name2]*len(group2["average.length.usv"]),
-        "usv_length_mean": group1["average.length.usv"].astype(float).tolist() + group2["average.length.usv"].astype(float).tolist(),
-        "usv_length_sem": group1["sem.length.usv"].astype(float).tolist() + group2["sem.length.usv"].astype(float).tolist(),
+        "Genotype": [name1]*len(group1["average.duration.usv"]) + [name2]*len(group2["average.duration.usv"]),
+        "usv_duration_mean": group1["average.duration.usv"].astype(float).tolist() + group2["average.duration.usv"].astype(float).tolist(),
+        "usv_duration_sem": group1["sem.duration.usv"].astype(float).tolist() + group2["sem.duration.usv"].astype(float).tolist(),
         "CPM_mean": group1["calls.per.minute"].astype(float).tolist() + group2["calls.per.minute"].astype(float).tolist()
         })
         print("\033[1;4mWTSvsKO\033[0m\n", df)
@@ -145,8 +145,8 @@ class Join_summary():
         """
         df = pd.DataFrame({
             "Genotype": [name1, name2],
-            "usv_length_mean": [group1['average.length.usv'].astype(float).mean(), group2['average.length.usv'].astype(float).mean()],
-            "usv_length_sem": [group1['average.length.usv'].astype(float).sem(), group2['average.length.usv'].astype(float).sem()],
+            "usv_duration_mean": [group1['average.duration.usv'].astype(float).mean(), group2['average.duration.usv'].astype(float).mean()],
+            "usv_duration_sem": [group1['average.duration.usv'].astype(float).sem(), group2['average.duration.usv'].astype(float).sem()],
             "CPM_mean": [group1['calls.per.minute'].astype(float).mean(), group2['calls.per.minute'].astype(float).mean()],
             "CPM_sem": [group1['calls.per.minute'].astype(float).sem(), group2['calls.per.minute'].astype(float).sem()]
             })
