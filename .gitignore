@@ -12,3 +12,5 @@ __pycache__
 
 # Phyton files
 trials.py
+grouped_by_class.py
+setup.py
